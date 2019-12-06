@@ -68,9 +68,9 @@ int main(int argc, char *argv[]) {
     ws2811_return_t ret;
 
     // Handle Ctrl C
-    struct sigaction sa = {
-        .sa_handler = ctrl_c_handler,
-    };
+    struct sigaction sa;
+    sa.sa_handler = ctrl_c_handler,
+
     sigaction(SIGINT, &sa, NULL);
     sigaction(SIGTERM, &sa, NULL);
 
