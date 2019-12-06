@@ -30,15 +30,15 @@ ws2811_t ledstring = {
     .channel = {
         [0] = {
             .gpionum = 18,
-            .count = ledStringLength,
             .invert = 0,
-            .brightness = 255, // 0 to 255 brightness
+            .count = ledStringLength,
             .strip_type = WS2811_STRIP_GRB,
+            .brightness = 255, // 0 to 255 brightness
         },
         [1] = {
             .gpionum = 0,
-            .count = 0,
             .invert = 0,
+            .count = 0,
             .brightness = 0,
         },
     },
