@@ -20,6 +20,7 @@ extern "C" {
 }
 
 const int ledStringLength = 150;
+const int fps = 45;
 
 uint32_t currentFrame = 0;
 
@@ -99,9 +100,8 @@ int main(int argc, char *argv[]) {
             break;
         }
 
-        // 15 frames /sec
         currentFrame++;
-        usleep(1000000 / 15);
+        usleep(1000000 / fps);
     }
 
     clearLedString();
