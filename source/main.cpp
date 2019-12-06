@@ -50,10 +50,22 @@ void clearLedString() {
     }
 }
 
+// Test colors to cycle through
+ws2811_led_t dotcolors[] = {
+    0x00200000,  // red
+    0x00201000,  // orange
+    0x00202000,  // yellow
+    0x00002000,  // green
+    0x00002020,  // lightblue
+    0x00000020,  // blue
+    0x00100010,  // purple
+    0x00200010,  // pink
+};
+
 void changeLedColors() {
     for (int i = 0; i < ledStringLength; i++) {
-        // Just try light blue for now
-        ledstring.channel[0].leds[i] = 0x00002020;
+        // Cycle through leds
+        ledstring.channel[0].leds[i] = dotcolors[(currentFrame + i) % 8];
     }
 }
 
