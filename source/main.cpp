@@ -21,6 +21,8 @@ extern "C" {
 
 const int ledStringLength = 150;
 
+uint32_t currentFrame = 0;
+
 // Struct defining important stuff
 ws2811_t ledstring = {
     .freq = WS2811_TARGET_FREQ,
@@ -48,6 +50,13 @@ void clearLedString() {
     }
 }
 
+void changeLedColors() {
+    for (int i = 0; i < ledStringLength; i++) {
+        // Just try light blue for now
+        ledstring.channel[0].leds[i] = 0x00002020;
+    }
+}
+
 static bool running = true;
 
 static void ctrl_c_handler(int signum) {
@@ -71,9 +80,7 @@ int main(int argc, char *argv[]) {
     }
 
     while (running) {
-        //matrix_raise();
-        //matrix_bottom();
-        //matrix_render();
+        changeLedColors();
 
         if ((ret = ws2811_render(&ledstring)) != WS2811_SUCCESS) {
             fprintf(stderr, "ws2811_render failed: %s\n", ws2811_get_return_t_str(ret));
@@ -81,6 +88,7 @@ int main(int argc, char *argv[]) {
         }
 
         // 15 frames /sec
+        currentFrame++;
         usleep(1000000 / 15);
     }
 
