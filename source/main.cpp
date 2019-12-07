@@ -14,14 +14,14 @@
 #include <getopt.h>
 
 extern "C" {
-#include "rpi_ws281x/clk.h"
-#include "rpi_ws281x/gpio.h"
-#include "rpi_ws281x/dma.h"
-#include "rpi_ws281x/pwm.h"
-#include "rpi_ws281x/ws2811.h"
+#include <rpi_ws281x/clk.h>
+#include <rpi_ws281x/gpio.h>
+#include <rpi_ws281x/dma.h>
+#include <rpi_ws281x/pwm.h>
+#include <rpi_ws281x/ws2811.h>
 }
 
-#include "colormap/colormap.hpp"
+#include <colormap/colormap.hpp>
 
 const int ledStringLength = 150;
 const int fps = 45;

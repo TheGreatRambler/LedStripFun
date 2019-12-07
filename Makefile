@@ -8,11 +8,12 @@ SRC_DIRS ?= ./source
 CFLAGS := -std=gnu11
 # C++ flags
 # Single precision sets all defined floating point numbers to floats, saves on memory
-CXXFLAGS := -std=c++11 -fsingle-precision-constant
+# Set include path to relative dependency path
+CXXFLAGS := -std=c++11 -fsingle-precision-constant -I./dependencies
 # C/C++ flags (no -pendantic)
 CPPFLAGS := -g -Wall -Wextra
 # Linker flags (-lpthread needed for threads)
-LDFLAGS := -lpthread
+LDFLAGS := -lpthread 
 
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
