@@ -23,7 +23,7 @@ const int fps = 45;
 
 uint32_t currentFrame = 0;
 
-const int palatteSize = sizeof(dotcolors) / sizeof(dotcolors[0]);
+const uint16_t palatteSize = sizeof(dotcolors) / sizeof(dotcolors[0]);
 
 // Struct defining important stuff
 ws2811_t ledstring = {
@@ -55,7 +55,8 @@ void clearLedString() {
 void changeLedColors() {
     for (int i = 0; i < ledStringLength; i++) {
         // Cycle through leds
-        int index = std::abs((currentFrame + i) % (palatteSize * 2) - palatteSize);
+        // It will wrap around because of how cpp works
+        int index = (currentFrame + i) % (palatteSize * 2) - palatteSize;
         ledstring.channel[0].leds[i] = dotcolors[index];
     }
 }
