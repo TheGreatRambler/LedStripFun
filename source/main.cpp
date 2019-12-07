@@ -23,6 +23,8 @@ const int fps = 45;
 
 uint32_t currentFrame = 0;
 
+const int palatteSize = sizeof(dotcolors) / sizeof(dotcolors[0]);
+
 // Struct defining important stuff
 ws2811_t ledstring = {
     .freq = WS2811_TARGET_FREQ,
@@ -50,22 +52,11 @@ void clearLedString() {
     }
 }
 
-// Test colors to cycle through
-ws2811_led_t dotcolors[] = {
-    0x00200000,  // red
-    0x00201000,  // orange
-    0x00202000,  // yellow
-    0x00002000,  // green
-    0x00002020,  // lightblue
-    0x00000020,  // blue
-    0x00100010,  // purple
-    0x00200010,  // pink
-};
-
 void changeLedColors() {
     for (int i = 0; i < ledStringLength; i++) {
         // Cycle through leds
-        ledstring.channel[0].leds[i] = dotcolors[(currentFrame + i) % 8];
+        int index = std::abs((currentFrame + i) % (palatteSize * 2) - palatteSize);
+        ledstring.channel[0].leds[i] = dotcolors[index];
     }
 }
 
