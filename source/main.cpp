@@ -12,11 +12,11 @@
 #include <getopt.h>
 
 extern "C" {
-#include "rpi_ws281x/clk.h"
-#include "rpi_ws281x/gpio.h"
-#include "rpi_ws281x/dma.h"
-#include "rpi_ws281x/pwm.h"
-#include "rpi_ws281x/ws2811.h"
+#include <rpi_ws281x/clk.h>
+#include <rpi_ws281x/gpio.h>
+#include <rpi_ws281x/dma.h>
+#include <rpi_ws281x/pwm.h>
+#include <rpi_ws281x/ws2811.h>
 }
 
 const int ledStringLength = 150;
