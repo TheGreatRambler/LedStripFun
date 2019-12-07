@@ -42,7 +42,7 @@ ws2811_t ledstring = {
             .invert = 0,
             .count = ledStringLength,
             .strip_type = WS2811_STRIP_GRB,
-            .brightness = 255, // 0 to 255 brightness
+            .brightness = 150, // 0 to 255 brightness
         },
         [1] = {
             .gpionum = 0,
