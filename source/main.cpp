@@ -1,9 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <cstdlib>
 #include <string.h>
-#include <cstdint>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -14,23 +12,17 @@
 #include <getopt.h>
 
 extern "C" {
-#include <rpi_ws281x/clk.h>
-#include <rpi_ws281x/gpio.h>
-#include <rpi_ws281x/dma.h>
-#include <rpi_ws281x/pwm.h>
-#include <rpi_ws281x/ws2811.h>
+#include "rpi_ws281x/clk.h"
+#include "rpi_ws281x/gpio.h"
+#include "rpi_ws281x/dma.h"
+#include "rpi_ws281x/pwm.h"
+#include "rpi_ws281x/ws2811.h"
 }
-
-#include <colormap/colormap.hpp>
 
 const int ledStringLength = 150;
 const int fps = 45;
 
 uint32_t currentFrame = 0;
-
-int paletteSize = 40;
-
-auto pal = colormap::palettes.at("magma").rescale(0, paletteSize - 1);
 
 // Struct defining important stuff
 ws2811_t ledstring = {
@@ -42,7 +34,7 @@ ws2811_t ledstring = {
             .invert = 0,
             .count = ledStringLength,
             .strip_type = WS2811_STRIP_GRB,
-            .brightness = 150, // 0 to 255 brightness
+            .brightness = 255, // 0 to 255 brightness
         },
         [1] = {
             .gpionum = 0,
@@ -74,13 +66,7 @@ ws2811_led_t dotcolors[] = {
 void changeLedColors() {
     for (int i = 0; i < ledStringLength; i++) {
         // Cycle through leds
-        int index = std::abs((currentFrame + i) % (paletteSize * 2) - paletteSize);
-        // Get the color
-        uint8_t* color = pal(index).getBytes();
-        // This sets this value --------V to zero to remove white
-        int whiteValue = 0;
-        uint32_t theColor = (whiteValue << 24) | (color[0] << 16) | (color[1] << 8) | color[2];
-        ledstring.channel[0].leds[i] = theColor;
+        ledstring.channel[0].leds[i] = dotcolors[(currentFrame + i) % 8];
     }
 }
 
