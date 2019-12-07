@@ -1,7 +1,9 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <cstdlib>
 #include <string.h>
+#include <cstdint>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -19,10 +21,16 @@ extern "C" {
 #include "rpi_ws281x/ws2811.h"
 }
 
+#include "colormap/colormap.hpp"
+
 const int ledStringLength = 150;
 const int fps = 45;
 
 uint32_t currentFrame = 0;
+
+int paletteSize = 40;
+
+auto pal = colormap::palettes.at("magma").rescale(0, paletteSize - 1);
 
 // Struct defining important stuff
 ws2811_t ledstring = {
@@ -66,7 +74,12 @@ ws2811_led_t dotcolors[] = {
 void changeLedColors() {
     for (int i = 0; i < ledStringLength; i++) {
         // Cycle through leds
-        ledstring.channel[0].leds[i] = dotcolors[(currentFrame + i) % 8];
+        int index = abs((currentFrame + i) % (paletteSize * 2) - paletteSize);
+        // Get the color
+        uint32_t color = reinterpret_cast<uint32_t>(pal(index)) >> 8;
+        // This sets this value --------V to zero to remove white
+        color = (color & 0x00FFFFFF) | (0 & 0xFF) << 24)
+        ledstring.channel[0].leds[i] = color;
     }
 }
 
