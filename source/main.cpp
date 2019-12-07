@@ -16,6 +16,8 @@
 #include <rpi_ws281x/pwm.h>
 #include <rpi_ws281x/ws2811.h>
 
+#include "palattes.hpp"
+
 const int ledStringLength = 150;
 const int fps = 45;
 
