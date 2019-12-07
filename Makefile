@@ -10,7 +10,7 @@ CFLAGS := -std=gnu11
 # Single precision sets all defined floating point numbers to floats, saves on memory
 # Set include path to relative dependency path
 # A dependency needs c++ 14
-CXXFLAGS := -std=c++14 -fsingle-precision-constant -I./dependencies
+CXXFLAGS := -std=c++14 -fsingle-precision-constant -I./source/dependencies
 # C/C++ flags (no -pendantic)
 CPPFLAGS := -g -Wall -Wextra
 # Linker flags (-lpthread needed for threads)
