@@ -74,12 +74,13 @@ ws2811_led_t dotcolors[] = {
 void changeLedColors() {
     for (int i = 0; i < ledStringLength; i++) {
         // Cycle through leds
-        int index = abs((currentFrame + i) % (paletteSize * 2) - paletteSize);
+        int index = std::abs((currentFrame + i) % (paletteSize * 2) - paletteSize);
         // Get the color
-        uint32_t color = reinterpret_cast<uint32_t>(pal(index)) >> 8;
+        uint8_t* color = pal(index).getBytes();
         // This sets this value --------V to zero to remove white
-        color = (color & 0x00FFFFFF) | (0 & 0xFF) << 24)
-        ledstring.channel[0].leds[i] = color;
+        int whiteValue = 0;
+        uint32_t theColor = (whiteValue << 24) | (color[0] << 16) | (color[1] << 8) | color[2];
+        ledstring.channel[0].leds[i] = theColor;
     }
 }
 
