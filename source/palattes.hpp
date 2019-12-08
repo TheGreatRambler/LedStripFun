@@ -6,12 +6,5 @@
 
 // Check https://gka.github.io/palettes
 ws2811_led_t dotcolors[] = {
-    0x00200000,  // red
-    0x00201000,  // orange
-    0x00202000,  // yellow
-    0x00002000,  // green
-    0x00002020,  // lightblue
-    0x00000020,  // blue
-    0x00100010,  // purple
-    0x00200010,  // pink
+    0x007ba62d,
 };
