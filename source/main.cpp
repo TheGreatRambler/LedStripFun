@@ -23,8 +23,6 @@ const int fps = 45;
 
 uint32_t currentFrame = 0;
 
-const uint16_t palatteSize = sizeof(dotcolors) / sizeof(dotcolors[0]);
-
 // Struct defining important stuff
 ws2811_t ledstring = {
     .freq = WS2811_TARGET_FREQ,
