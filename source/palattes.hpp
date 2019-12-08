@@ -6,5 +6,5 @@
 
 // Check https://gka.github.io/palettes
 ws2811_led_t dotcolors[] = {
-    0x00200000,
+    0x00FFFFFF,
 };
