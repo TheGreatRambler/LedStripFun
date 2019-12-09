@@ -60,7 +60,7 @@ void changeLedColors() {
   for (int i = 0; i < ledStringLength; i++) {
     // Cycle through leds
     // It will wrap around because of how cpp works
-    int index = (currentFrame + i) % (palatteSize);
+    int index = std::abs((currentFrame + i) % (palatteSize * 2) - palatteSize);
     ledstring.channel[0].leds[i] = dotcolors[index];
   }
 }
