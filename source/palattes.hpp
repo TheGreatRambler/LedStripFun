@@ -12,9 +12,3 @@ ws2811_led_t dotcolors[] = {
 };
 
 const uint16_t palatteSize = sizeof(dotcolors) / sizeof(dotcolors[0]);
-
-// Loop over the array to map the values correctly
-// Simply bitshift to the right to make the W value zero
-for (int i = 0; i < palatteSize; i++) {
-  dotcolors[i] = dotcolors[i] >> 2;
-}
