@@ -21,7 +21,7 @@ extern "C" {
 
 #include "palattes.hpp"
 
-const int ledStringLength = 150;
+const int ledStringLength = 144;
 const int fps = 45;
 
 uint32_t currentFrame = 0;
