@@ -1,3 +1,5 @@
+#include <cstdint>
+
 #include <rpi_ws281x/clk.h>
 #include <rpi_ws281x/dma.h>
 #include <rpi_ws281x/gpio.h>
