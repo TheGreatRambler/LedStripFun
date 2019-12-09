@@ -1,3 +1,4 @@
+#include <bits/stdint-intn.h>
 #include <fcntl.h>
 #include <getopt.h>
 #include <signal.h>
@@ -60,7 +61,9 @@ void changeLedColors() {
   for (int i = 0; i < ledStringLength; i++) {
     // Cycle through leds
     // It will wrap around because of how cpp works
-    int index = std::abs((currentFrame + i) % (palatteSize * 2) - palatteSize);
+    int index =
+        std::abs(((int32_t)currentFrame + i) % ((int16_t)palatteSize * 2) -
+                 (int16_t)palatteSize);
     ledstring.channel[0].leds[i] = dotcolors[index];
   }
 }
