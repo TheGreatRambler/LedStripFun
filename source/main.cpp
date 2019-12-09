@@ -1,10 +1,5 @@
 #include <fcntl.h>
 #include <getopt.h>
-#include <rpi_ws281x/clk.h>
-#include <rpi_ws281x/dma.h>
-#include <rpi_ws281x/gpio.h>
-#include <rpi_ws281x/pwm.h>
-#include <rpi_ws281x/ws2811.h>
 #include <signal.h>
 #include <stdarg.h>
 #include <stdint.h>
@@ -15,6 +10,14 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+
+extern "C" {
+#include <rpi_ws281x/clk.h>
+#include <rpi_ws281x/dma.h>
+#include <rpi_ws281x/gpio.h>
+#include <rpi_ws281x/pwm.h>
+#include <rpi_ws281x/ws2811.h>
+}
 
 #include "palattes.hpp"
 
