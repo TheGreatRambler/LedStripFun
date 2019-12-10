@@ -60,7 +60,7 @@
 
 /* 4 colors (R, G, B + W), 8 bits per byte, 3 symbols per bit + 55uS low for reset signal */
 #define LED_COLOURS                              4
-#define LED_RESET_uS                             55
+#define LED_RESET_uS                             300
 #define LED_BIT_COUNT(leds, freq)                ((leds * LED_COLOURS * 8 * 3) + ((LED_RESET_uS * \
                                                   (freq * 3)) / 1000000))
 
